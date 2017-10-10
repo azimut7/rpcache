@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Contains rpcache.module.
+ *
+ * IMPORTANT:
+ *
+ * Redis Page Cache purging depends on
+ * Purge module https://www.drupal.org/project/purge
+ * and on URLs queuer module https://www.drupal.org/project/purge_queuer_url
+ *
+ * It seems there is a bug on URLs queuer
+ * https://www.drupal.org/node/2912139#comment-12275452
+ * For correct purging you need to fix it.
+ *
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\redis\ClientFactory;
+
+/**
+ * Implements hook_help().
+ */
+function rpcache_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rpcache module.
+    case 'help.page.rpcache':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Redis Page Cache') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_rebuild().
+ *
+ * Remove all Redis Page Cache entries from Redis on Drupal Cache Rebuiild
+ *
+ * Links:
+ * https://gist.github.com/sharathciddu/8532424
+ * https://stackoverflow.com/questions/4006324/how-to-atomically-delete-keys-matching-a-pattern-using-redis/23399125#23399125
+ * https://stackoverflow.com/questions/32295488/delete-keys-with-the-same-patten-in-phpredis
+ * https://stackoverflow.com/questions/25532952/php-predis-how-to-get-delete-keys-containing-special-characters
+ * https://github.com/phpredis/phpredis#script
+ */
+function rpcache_rebuild() {
+  //todo: make throught PHP
+  if ($redis_cache_clear = \Drupal::config('rpcache.settings')->get('clear_on_drupal_cache_rebuild')) {
+    // Clear cache via REDIS-CLI
+    $prefix = \Drupal::config('rpcache.settings')->get('prefix');
+    $command = 'redis-cli --scan --pattern "' . $prefix . '*" | xargs -L 100 redis-cli DEL';
+    shell_exec($command);
+//    if (ClientFactory::hasClient()) {
+//      $prefix = \Drupal::config('rpcache.settings')->get('prefix');
+//      $this->redis = ClientFactory::getClient();
+//    }
+  }
+}

@@ -1,0 +1,8 @@
+name: Redis Page Cache
+type: module
+description: Redis Page Cache
+core: 8.x
+package: Performance
+dependencies:
+  - redis
+configure: rpcache.admin_settings

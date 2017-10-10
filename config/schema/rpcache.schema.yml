@@ -1,0 +1,21 @@
+ # Schema for the configuration files of the rpcache module.
+rpcache.settings:
+  type: config_object
+  label: 'rpcache settings.'
+  mapping:
+    prefix:
+      type: string
+      label: 'The prefix for Redis keys'
+      translatable: false
+    clear_on_drupal_cache_rebuild:
+      type: boolean
+      label: 'Remove Redis cache on Clear all caches action (and drush cr command)'
+      translatable: false
+    blacklist:
+      label: 'A list of string patterns that will not get saved to the Redis Page Cache'
+      type: sequence
+      translatable: false
+      sequence:
+        type: string
+        label: 'String that cannot be present in a fully qualified URL.'
+        translatable: false

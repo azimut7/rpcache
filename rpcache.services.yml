@@ -1,0 +1,6 @@
+services:
+  html_response.rpcache_subscriber:
+    class: Drupal\rpcache\EventSubscriber\HtmlResponseRPCacheSubscriber
+    arguments: []
+    tags:
+      - { name: event_subscriber }

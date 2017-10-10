@@ -1,0 +1,18 @@
+prefix: 'rpcache:'
+clear_on_drupal_cache_rebuild: false
+blacklist:
+  - '/admin/'
+  - '/user/login?destination='
+  - '/user/register?destination='
+  - '/entity-browser'
+  - 'txn='
+  - 'gclid='
+  - 'dclid='
+  - 'utm_source='
+  - 'utm_campaign='
+  - 'utm_content='
+  - 'utm_medium='
+  - '/edit'
+  - '/delete'
+  - 'translations'
+  - '/devel/'

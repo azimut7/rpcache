@@ -1,0 +1,28 @@
+rpcache.admin_settings:
+  path: '/admin/config/development/rpcache'
+  defaults:
+    _form: '\Drupal\rpcache\Form\RPCacheConfigurationForm'
+    _title: 'Redis Page Cache: configuration'
+  requirements:
+    _permission: 'administer site configuration'
+rpcache.admin_purge_pages:
+  path: '/admin/config/development/rpcache-purge'
+  defaults:
+    _form: '\Drupal\rpcache\Form\RPCachePurgeForm'
+    _title: 'Redis Page Cache: clear URLs from Cache'
+  requirements:
+    _permission: 'administer site configuration'
+rpcache.admin_clear_all_pages:
+  path: '/admin/config/development/rpcache-clear-all'
+  defaults:
+    _form: '\Drupal\rpcache\Form\RPCacheClearAllForm'
+    _title: 'Redis Page Cache: clear all URLs from Cache'
+  requirements:
+    _permission: 'administer site configuration'
+rpcache.rpcache_clear:
+  path: '/rpcache/rpcache-clear'
+  defaults:
+    _controller: '\Drupal\rpcache\Controller\RPCacheController::clear'
+    _title: 'RPCacheEndpoint'
+  requirements:
+    _permission: 'access content'

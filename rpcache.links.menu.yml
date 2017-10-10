@@ -1,0 +1,5 @@
+rpcache.admin:
+  title: 'Redis Page Cache settings'
+  description: 'Configure blacklist for caching, keys, nginx example etc.'
+  parent: system.admin_config_development
+  route_name: rpcache.admin_settings

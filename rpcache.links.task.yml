@@ -1,0 +1,14 @@
+rpcache.admin_setting_tab:
+  route_name: rpcache.admin_settings
+  title: 'Settings'
+  base_route: rpcache.admin_settings
+rpcache.admin_purge_pages_tab:
+  route_name: rpcache.admin_purge_pages
+  title: 'Purge URLs'
+  base_route: rpcache.admin_settings
+  weight: 100
+rpcache.admin_clear_all_tab:
+  route_name: rpcache.admin_clear_all_pages
+  title: 'Clear All Cache'
+  base_route: rpcache.admin_settings
+  weight: 100
